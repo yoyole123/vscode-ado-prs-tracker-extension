@@ -1,0 +1,302 @@
+{
+  "_README": "Synthetic capture of the four Azure DevOps responses the extension consumes, for offline testing. Field shapes match the Raw* types in src/types.ts. NOTE: real ADO responses contain many more fields than shown here; only the subset the extension actually reads is included. `mergeStatus` is the STRING form returned by api-version 7.1 ('succeeded' | 'conflicts' | ...), not the numeric enum some other API versions return. See ado-data-contract.md for how each PR maps to a colour/category and how to assemble a PrFetchResult from this file.",
+
+  "connectionData": {
+    "_endpoint": "GET /_apis/connectionData?api-version=7.1-preview",
+    "authenticatedUser": {
+      "id": "00000000-0000-0000-0000-00000000beef"
+    }
+  },
+
+  "pullRequestsByCreator": {
+    "_endpoint": "GET /_apis/git/pullrequests?searchCriteria.creatorId={authenticatedUser.id}&searchCriteria.status=active&api-version=7.1",
+    "value": [
+      {
+        "pullRequestId": 110,
+        "title": "Platform: rotate service certificates",
+        "isDraft": false,
+        "status": "active",
+        "mergeStatus": "succeeded",
+        "creationDate": "2026-05-30T09:15:00Z",
+        "sourceRefName": "refs/heads/feature/cert-rotation",
+        "targetRefName": "refs/heads/main",
+        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-platform/pullRequests/110",
+        "repository": {
+          "id": "repo-platform",
+          "name": "platform-infra",
+          "project": { "id": "proj-chicago", "name": "Chicago NG" }
+        },
+        "reviewers": [
+          { "id": "00000000-0000-0000-0000-00000000beef", "displayName": "You", "vote": 10, "isRequired": true },
+          { "id": "aaaaaaaa-0000-0000-0000-000000000001", "displayName": "Alice Reviewer", "vote": 10, "isRequired": true }
+        ],
+        "lastMergeSourceCommit": { "commitId": "110aaa0000000000000000000000000000000001" }
+      },
+      {
+        "pullRequestId": 107,
+        "title": "Bump auth library to 4.2",
+        "isDraft": false,
+        "status": "active",
+        "mergeStatus": "succeeded",
+        "creationDate": "2026-05-29T14:40:00Z",
+        "sourceRefName": "refs/heads/feature/auth-bump",
+        "targetRefName": "refs/heads/main",
+        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-gw/pullRequests/107",
+        "repository": {
+          "id": "repo-gw",
+          "name": "gateway-service",
+          "project": { "id": "proj-chicago", "name": "Chicago NG" }
+        },
+        "reviewers": [
+          { "id": "ffffffff-0000-0000-0000-000000000005", "displayName": "Frank Lead", "vote": -10, "isRequired": true }
+        ],
+        "lastMergeSourceCommit": { "commitId": "107fff0000000000000000000000000000000001" }
+      },
+      {
+        "pullRequestId": 105,
+        "title": "Refactor auth module into smaller units",
+        "isDraft": false,
+        "status": "active",
+        "mergeStatus": "succeeded",
+        "creationDate": "2026-05-28T11:05:00Z",
+        "sourceRefName": "refs/heads/feature/auth-refactor",
+        "targetRefName": "refs/heads/main",
+        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-gw/pullRequests/105",
+        "repository": {
+          "id": "repo-gw",
+          "name": "gateway-service",
+          "project": { "id": "proj-chicago", "name": "Chicago NG" }
+        },
+        "reviewers": [
+          { "id": "aaaaaaaa-0000-0000-0000-000000000001", "displayName": "Alice Reviewer", "vote": 10, "isRequired": true }
+        ],
+        "lastMergeSourceCommit": { "commitId": "105aaa0000000000000000000000000000000001" }
+      },
+      {
+        "pullRequestId": 104,
+        "title": "Bump base image to alpine 3.20",
+        "isDraft": false,
+        "status": "active",
+        "mergeStatus": "succeeded",
+        "creationDate": "2026-05-27T16:20:00Z",
+        "sourceRefName": "refs/heads/feature/base-image",
+        "targetRefName": "refs/heads/main",
+        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-platform/pullRequests/104",
+        "repository": {
+          "id": "repo-platform",
+          "name": "platform-infra",
+          "project": { "id": "proj-chicago", "name": "Chicago NG" }
+        },
+        "reviewers": [],
+        "lastMergeSourceCommit": { "commitId": "104aaa0000000000000000000000000000000001" }
+      },
+      {
+        "pullRequestId": 103,
+        "title": "Fix flaky migration test",
+        "isDraft": false,
+        "status": "active",
+        "mergeStatus": "conflicts",
+        "creationDate": "2026-05-26T08:30:00Z",
+        "sourceRefName": "refs/heads/fix/flaky-migration",
+        "targetRefName": "refs/heads/main",
+        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-gw/pullRequests/103",
+        "repository": {
+          "id": "repo-gw",
+          "name": "gateway-service",
+          "project": { "id": "proj-chicago", "name": "Chicago NG" }
+        },
+        "reviewers": [
+          { "id": "bbbbbbbb-0000-0000-0000-000000000002", "displayName": "Bob Dev", "vote": 0, "isRequired": false }
+        ],
+        "lastMergeSourceCommit": { "commitId": "103bbb0000000000000000000000000000000001" }
+      },
+      {
+        "pullRequestId": 102,
+        "title": "chore(prod-cac): onboard res-service",
+        "isDraft": false,
+        "status": "active",
+        "mergeStatus": "succeeded",
+        "creationDate": "2026-05-25T13:00:00Z",
+        "sourceRefName": "refs/heads/feature/prod-cac-res-onboarding",
+        "targetRefName": "refs/heads/main",
+        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-argocd/pullRequests/102",
+        "repository": {
+          "id": "repo-argocd",
+          "name": "argocd",
+          "project": { "id": "proj-chicago", "name": "Chicago NG" }
+        },
+        "reviewers": [],
+        "lastMergeSourceCommit": { "commitId": "102ccc0000000000000000000000000000000001" }
+      },
+      {
+        "pullRequestId": 101,
+        "title": "Add retry/backoff to gateway client",
+        "isDraft": false,
+        "status": "active",
+        "mergeStatus": "succeeded",
+        "creationDate": "2026-05-24T10:10:00Z",
+        "sourceRefName": "refs/heads/feature/gw-retry",
+        "targetRefName": "refs/heads/main",
+        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-gw/pullRequests/101",
+        "repository": {
+          "id": "repo-gw",
+          "name": "gateway-service",
+          "project": { "id": "proj-chicago", "name": "Chicago NG" }
+        },
+        "reviewers": [
+          { "id": "aaaaaaaa-0000-0000-0000-000000000001", "displayName": "Alice Reviewer", "vote": 10, "isRequired": true }
+        ],
+        "lastMergeSourceCommit": { "commitId": "101aaa0000000000000000000000000000000001" }
+      },
+      {
+        "pullRequestId": 106,
+        "title": "WIP: new metrics dashboard",
+        "isDraft": true,
+        "status": "active",
+        "mergeStatus": "succeeded",
+        "creationDate": "2026-05-23T17:45:00Z",
+        "sourceRefName": "refs/heads/feature/metrics-dashboard",
+        "targetRefName": "refs/heads/main",
+        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-gw/pullRequests/106",
+        "repository": {
+          "id": "repo-gw",
+          "name": "gateway-service",
+          "project": { "id": "proj-chicago", "name": "Chicago NG" }
+        },
+        "reviewers": [],
+        "lastMergeSourceCommit": { "commitId": "106ddd0000000000000000000000000000000001" }
+      }
+    ]
+  },
+
+  "pullRequestsByReviewer": {
+    "_endpoint": "GET /_apis/git/pullrequests?searchCriteria.reviewerId={authenticatedUser.id}&searchCriteria.status=active&api-version=7.1",
+    "_note": "PR 110 appears in BOTH this list and the creator list - dedup by pullRequestId yields role 'both'.",
+    "value": [
+      {
+        "pullRequestId": 110,
+        "title": "Platform: rotate service certificates",
+        "isDraft": false,
+        "status": "active",
+        "mergeStatus": "succeeded",
+        "creationDate": "2026-05-30T09:15:00Z",
+        "sourceRefName": "refs/heads/feature/cert-rotation",
+        "targetRefName": "refs/heads/main",
+        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-platform/pullRequests/110",
+        "repository": {
+          "id": "repo-platform",
+          "name": "platform-infra",
+          "project": { "id": "proj-chicago", "name": "Chicago NG" }
+        },
+        "reviewers": [
+          { "id": "00000000-0000-0000-0000-00000000beef", "displayName": "You", "vote": 10, "isRequired": true },
+          { "id": "aaaaaaaa-0000-0000-0000-000000000001", "displayName": "Alice Reviewer", "vote": 10, "isRequired": true }
+        ],
+        "lastMergeSourceCommit": { "commitId": "110aaa0000000000000000000000000000000001" }
+      },
+      {
+        "pullRequestId": 201,
+        "title": "Update helm charts for ingress",
+        "isDraft": false,
+        "status": "active",
+        "mergeStatus": "succeeded",
+        "creationDate": "2026-05-31T12:00:00Z",
+        "sourceRefName": "refs/heads/feature/helm-ingress",
+        "targetRefName": "refs/heads/main",
+        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-argocd/pullRequests/201",
+        "repository": {
+          "id": "repo-argocd",
+          "name": "argocd",
+          "project": { "id": "proj-chicago", "name": "Chicago NG" }
+        },
+        "reviewers": [
+          { "id": "00000000-0000-0000-0000-00000000beef", "displayName": "You", "vote": 0, "isRequired": true },
+          { "id": "dddddddd-0000-0000-0000-000000000004", "displayName": "Dave Ops", "vote": 10, "isRequired": false }
+        ],
+        "lastMergeSourceCommit": { "commitId": "201ddd0000000000000000000000000000000001" }
+      },
+      {
+        "pullRequestId": 202,
+        "title": "Tighten RBAC on prod namespaces",
+        "isDraft": false,
+        "status": "active",
+        "mergeStatus": "succeeded",
+        "creationDate": "2026-05-22T19:30:00Z",
+        "sourceRefName": "refs/heads/feature/rbac-tighten",
+        "targetRefName": "refs/heads/main",
+        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-platform/pullRequests/202",
+        "repository": {
+          "id": "repo-platform",
+          "name": "platform-infra",
+          "project": { "id": "proj-chicago", "name": "Chicago NG" }
+        },
+        "reviewers": [
+          { "id": "00000000-0000-0000-0000-00000000beef", "displayName": "You", "vote": 10, "isRequired": false },
+          { "id": "cccccccc-0000-0000-0000-000000000003", "displayName": "Carol Sec", "vote": 0, "isRequired": true }
+        ],
+        "lastMergeSourceCommit": { "commitId": "202ccc0000000000000000000000000000000001" }
+      }
+    ]
+  },
+
+  "policyEvaluationsByPullRequestId": {
+    "_endpoint": "GET /{project}/_apis/policy/evaluations?artifactId=vstfs:///CodeReview/CodeReviewId/{project.id}/{pullRequestId}&api-version=7.1-preview",
+    "_note": "Keys are pullRequestId. Each value is the raw policy/evaluations response. The extension keeps only entries with configuration.isBlocking === true AND status !== 'notApplicable'. A FAILED fetch for a PR is represented as null (unknown) -> the PR stays yellow; this file shows successful fetches, so the unknown case is documented in ado-data-contract.md rather than encoded here.",
+    "110": {
+      "value": [
+        { "status": "approved", "configuration": { "isBlocking": true, "type": { "displayName": "Build" } } },
+        { "status": "approved", "configuration": { "isBlocking": true, "type": { "displayName": "Work item linking" } } }
+      ]
+    },
+    "107": {
+      "value": [
+        { "status": "approved", "configuration": { "isBlocking": true, "type": { "displayName": "Build" } } }
+      ]
+    },
+    "105": {
+      "value": [
+        { "status": "running", "configuration": { "isBlocking": true, "type": { "displayName": "Build" } } },
+        { "status": "approved", "configuration": { "isBlocking": true, "type": { "displayName": "Work item linking" } } }
+      ]
+    },
+    "104": {
+      "value": [
+        { "status": "rejected", "configuration": { "isBlocking": true, "type": { "displayName": "Build" } } },
+        { "status": "running", "configuration": { "isBlocking": true, "type": { "displayName": "Minimum number of reviewers" } } }
+      ]
+    },
+    "103": {
+      "value": [
+        { "status": "approved", "configuration": { "isBlocking": true, "type": { "displayName": "Build" } } }
+      ]
+    },
+    "102": {
+      "_note": "argocd / gitops repo: zero blocking policies. Known-empty -> eligible for green.",
+      "value": [
+        { "status": "approved", "configuration": { "isBlocking": false, "type": { "displayName": "Comment requirements" } } }
+      ]
+    },
+    "101": {
+      "_note": "Includes a non-blocking and a notApplicable entry that the extension filters out, leaving two approved blocking policies.",
+      "value": [
+        { "status": "approved", "configuration": { "isBlocking": true, "type": { "displayName": "Build" } } },
+        { "status": "approved", "configuration": { "isBlocking": true, "type": { "displayName": "Work item linking" } } },
+        { "status": "approved", "configuration": { "isBlocking": false, "type": { "displayName": "Comment requirements" } } },
+        { "status": "notApplicable", "configuration": { "isBlocking": true, "type": { "displayName": "Status check" } } }
+      ]
+    },
+    "106": {
+      "value": []
+    },
+    "201": {
+      "value": [
+        { "status": "approved", "configuration": { "isBlocking": true, "type": { "displayName": "Build" } } }
+      ]
+    },
+    "202": {
+      "value": [
+        { "status": "approved", "configuration": { "isBlocking": true, "type": { "displayName": "Build" } } }
+      ]
+    }
+  }
+}
