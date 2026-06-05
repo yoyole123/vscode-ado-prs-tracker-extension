@@ -1,5 +1,5 @@
 {
-  "name": "pr-status",
+  "name": "ado-pr-status",
   "displayName": "ADO PR Status",
   "description": "Status-bar indicator and quick list of my active Azure DevOps PRs.",
   "version": "0.0.2",
