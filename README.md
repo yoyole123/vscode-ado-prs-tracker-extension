@@ -1,4 +1,4 @@
-# PR Status
+# ADO PR Status
 
 A lightweight VS Code extension for tracking your active Azure DevOps pull requests in one place.
 
