@@ -7,8 +7,6 @@
  * "network / server problem" without inspecting status codes.
  */
 
-import { ADO_BASE_URL } from './constants.js';
-
 export class AdoAuthError extends Error {
   constructor(public readonly status: number, body: string) {
     super(`ADO auth failure (HTTP ${status}): ${body.slice(0, 200)}`);
@@ -37,8 +35,12 @@ export class AdoHttpError extends Error {
  * @throws {AdoAuthError} when ADO returns 401 or 403.
  * @throws {AdoHttpError} for any other non-2xx response.
  */
-export async function adoGet<T = unknown>(path: string, token: string): Promise<T> {
-  const url = `${ADO_BASE_URL}${path}`;
+export async function adoGet<T = unknown>(
+  path: string,
+  token: string,
+  baseUrl: string,
+): Promise<T> {
+  const url = `${baseUrl}${path}`;
   const res = await fetch(url, {
     headers: {
       Authorization: `Bearer ${token}`,

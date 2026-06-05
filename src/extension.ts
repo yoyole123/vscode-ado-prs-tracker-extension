@@ -43,6 +43,7 @@ import {
 } from './dismissStore.js';
 import { fetchMyPrs } from './prFetcher.js';
 import { fetchMockPrs } from './mockFetcher.js';
+import { clearRememberedOrg, resolveAdoBaseUrl } from './orgResolver.js';
 import { showPrPicker } from './quickPick.js';
 import { pickDismissedPr } from './undismissPicker.js';
 import { CategoryTreeItem, PrTreeDataProvider, PrTreeItem } from './prTreeView.js';
@@ -88,7 +89,8 @@ async function refresh(): Promise<void> {
               statusBar!.setSignedOut();
               return null;
             }
-            return fetchMyPrs(token);
+            const baseUrl = await resolveAdoBaseUrl(token, context!.globalState);
+            return fetchMyPrs(token, baseUrl);
           })();
       if (!fetchResult) return;
 
@@ -119,6 +121,7 @@ async function refresh(): Promise<void> {
         // Token rejected by ADO - try one silent refresh in case VSCode
         // cached an expired session, then escalate to re-auth UI.
         clearPinnedAccount();
+        await clearRememberedOrg(context!.globalState);
         statusBar!.setReauth();
         return;
       }

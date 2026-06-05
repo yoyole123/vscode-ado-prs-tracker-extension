@@ -3,7 +3,7 @@
   "displayName": "Au10tix PR Status",
   "description": "Status-bar indicator and quick list of my active Azure DevOps PRs.",
   "version": "0.0.1",
-  "publisher": "yoav-keren-local",
+  "publisher": "yoav-keren",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -38,6 +38,11 @@
     "configuration": {
       "title": "PR Status",
       "properties": {
+        "prStatus.organization": {
+          "type": "string",
+          "default": "",
+          "description": "Azure DevOps organization slug (or URL). Leave empty to auto-discover after sign in."
+        },
         "prStatus.mockMode": {
           "type": "boolean",
           "default": false,

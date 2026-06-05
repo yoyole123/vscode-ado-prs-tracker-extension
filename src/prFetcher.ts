@@ -44,11 +44,16 @@ export interface PrFetchResult {
  * as an assigned reviewer - and the blocking policy state for each.
  *
  * @param token bearer access token
+ * @param baseUrl org-scoped ADO base URL, e.g. `https://dev.azure.com/my-org`
  */
-export async function fetchMyPrs(token: string): Promise<PrFetchResult> {
+export async function fetchMyPrs(
+  token: string,
+  baseUrl: string,
+): Promise<PrFetchResult> {
   const conn = await adoGet<ConnectionData>(
     '/_apis/connectionData?api-version=7.1-preview',
     token,
+    baseUrl,
   );
   const userId = conn.authenticatedUser.id;
 
@@ -56,15 +61,17 @@ export async function fetchMyPrs(token: string): Promise<PrFetchResult> {
     adoGet<PrListResponse>(
       `/_apis/git/pullrequests?searchCriteria.creatorId=${userId}&searchCriteria.status=active&api-version=7.1`,
       token,
+      baseUrl,
     ),
     adoGet<PrListResponse>(
       `/_apis/git/pullrequests?searchCriteria.reviewerId=${userId}&searchCriteria.status=active&api-version=7.1`,
       token,
+      baseUrl,
     ),
   ]);
 
   const { prs, roleByPr } = mergePrLists(created.value, reviewing.value);
-  const policies = await fetchPoliciesForPrs(prs, token);
+  const policies = await fetchPoliciesForPrs(prs, token, baseUrl);
 
   return { userId, prs, policies, roleByPr };
 }
@@ -107,12 +114,13 @@ export function mergePrLists(
 async function fetchPoliciesForPrs(
   prs: RawPullRequest[],
   token: string,
+  baseUrl: string,
 ): Promise<Map<number, PolicyEvaluations>> {
   const result = new Map<number, PolicyEvaluations>();
 
   await Promise.all(
     prs.map(async pr => {
-      const evaluations = await fetchPolicyForPr(pr, token);
+      const evaluations = await fetchPolicyForPr(pr, token, baseUrl);
       result.set(pr.pullRequestId, evaluations);
     }),
   );
@@ -129,13 +137,14 @@ async function fetchPoliciesForPrs(
 async function fetchPolicyForPr(
   pr: RawPullRequest,
   token: string,
+  baseUrl: string,
 ): Promise<PolicyEvaluations> {
   const artifactRaw = `vstfs:///CodeReview/CodeReviewId/${pr.repository.project.id}/${pr.pullRequestId}`;
   const artifact = encodeURIComponent(artifactRaw);
   const project = encodeURIComponent(pr.repository.project.name);
   const path = `/${project}/_apis/policy/evaluations?artifactId=${artifact}&api-version=7.1-preview`;
   try {
-    const data = await adoGet<PolicyListResponse>(path, token);
+    const data = await adoGet<PolicyListResponse>(path, token, baseUrl);
     return data.value.filter(
       p => p.configuration.isBlocking && p.status !== 'notApplicable',
     );

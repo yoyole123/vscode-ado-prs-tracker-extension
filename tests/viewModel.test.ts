@@ -180,10 +180,11 @@ describe('buildWebUrl', () => {
   it('uses the project name and repo name', () => {
     const p = pr({
       pullRequestId: 12345,
+      url: 'https://dev.azure.com/my-org/_apis/git/repositories/r/pullRequests/12345',
       repository: { id: 'r', name: 'my-repo', project: { id: 'p', name: 'My Project' } },
     });
     expect(buildWebUrl(p)).toBe(
-      'https://dev.azure.com/Au10tix-AD/My%20Project/_git/my-repo/pullrequest/12345',
+      'https://dev.azure.com/my-org/My%20Project/_git/my-repo/pullrequest/12345',
     );
   });
 });

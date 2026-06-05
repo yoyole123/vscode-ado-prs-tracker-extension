@@ -6,17 +6,20 @@
 
 import { PrCategory } from './types.js';
 
-/** Azure DevOps organisation slug used in REST URLs. */
-export const ORG = 'Au10tix-AD';
-
 /** Well-known AAD application id for Azure DevOps Services. */
 export const ADO_APP_ID = '499b84ac-1321-427f-aa17-267ca6975798';
 
 /** AAD scope passed to `vscode.authentication.getSession`. */
 export const ADO_SCOPE = `${ADO_APP_ID}/.default`;
 
-/** Base REST URL for ADO calls. */
-export const ADO_BASE_URL = `https://dev.azure.com/${ORG}`;
+/** Host used for org-scoped ADO REST calls. */
+export const ADO_BASE_HOST = 'https://dev.azure.com';
+
+/** Host used for profile/account discovery APIs. */
+export const ADO_PROFILE_HOST = 'https://app.vssps.visualstudio.com';
+
+/** `globalState` key for the last discovered or user-chosen org slug. */
+export const ORG_STATE_KEY = 'prStatus.selectedOrg.v1';
 
 /** Polling interval for background refresh (5 minutes). */
 export const REFRESH_MS = 5 * 60 * 1000;

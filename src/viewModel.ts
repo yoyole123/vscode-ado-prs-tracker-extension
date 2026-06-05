@@ -5,7 +5,7 @@
  * arguments so it can be unit-tested without mocking.
  */
 
-import { ORG, VOTE_LABEL } from './constants.js';
+import { VOTE_LABEL } from './constants.js';
 import {
   PolicyEvaluations,
   PrCategory,
@@ -157,9 +157,23 @@ export function categorize(
  * API endpoint, not the human-facing page.
  */
 export function buildWebUrl(pr: RawPullRequest): string {
+  const org = orgFromApiUrl(pr.url);
+  if (!org) return pr.url;
+
   const project = encodeURIComponent(pr.repository.project.name);
   const repo = encodeURIComponent(pr.repository.name);
-  return `https://dev.azure.com/${ORG}/${project}/_git/${repo}/pullrequest/${pr.pullRequestId}`;
+  return `https://dev.azure.com/${org}/${project}/_git/${repo}/pullrequest/${pr.pullRequestId}`;
+}
+
+function orgFromApiUrl(apiUrl: string): string | null {
+  try {
+    const parsed = new URL(apiUrl);
+    if (parsed.hostname !== 'dev.azure.com') return null;
+    const segments = parsed.pathname.split('/').filter(Boolean);
+    return segments[0] ?? null;
+  } catch {
+    return null;
+  }
 }
 
 /**
