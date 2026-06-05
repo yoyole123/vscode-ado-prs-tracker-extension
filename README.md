@@ -1,4 +1,4 @@
-# Au10tix PR Status
+# PR Status
 
 A personal VS Code extension that shows your active Azure DevOps pull requests
 as a coloured indicator in the status bar and a dedicated sidebar view.

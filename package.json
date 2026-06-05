@@ -1,6 +1,6 @@
 {
   "name": "pr-status",
-  "displayName": "Au10tix PR Status",
+  "displayName": "PR Status",
   "description": "Status-bar indicator and quick list of my active Azure DevOps PRs.",
   "version": "0.0.1",
   "publisher": "yoav-keren",

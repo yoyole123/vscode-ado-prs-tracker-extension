@@ -20,7 +20,7 @@
         "creationDate": "2026-05-30T09:15:00Z",
         "sourceRefName": "refs/heads/feature/cert-rotation",
         "targetRefName": "refs/heads/main",
-        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-platform/pullRequests/110",
+        "url": "https://dev.azure.com/sample-org/_apis/git/repositories/repo-platform/pullRequests/110",
         "repository": {
           "id": "repo-platform",
           "name": "platform-infra",
@@ -41,7 +41,7 @@
         "creationDate": "2026-05-29T14:40:00Z",
         "sourceRefName": "refs/heads/feature/auth-bump",
         "targetRefName": "refs/heads/main",
-        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-gw/pullRequests/107",
+        "url": "https://dev.azure.com/sample-org/_apis/git/repositories/repo-gw/pullRequests/107",
         "repository": {
           "id": "repo-gw",
           "name": "gateway-service",
@@ -61,7 +61,7 @@
         "creationDate": "2026-05-28T11:05:00Z",
         "sourceRefName": "refs/heads/feature/auth-refactor",
         "targetRefName": "refs/heads/main",
-        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-gw/pullRequests/105",
+        "url": "https://dev.azure.com/sample-org/_apis/git/repositories/repo-gw/pullRequests/105",
         "repository": {
           "id": "repo-gw",
           "name": "gateway-service",
@@ -81,7 +81,7 @@
         "creationDate": "2026-05-27T16:20:00Z",
         "sourceRefName": "refs/heads/feature/base-image",
         "targetRefName": "refs/heads/main",
-        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-platform/pullRequests/104",
+        "url": "https://dev.azure.com/sample-org/_apis/git/repositories/repo-platform/pullRequests/104",
         "repository": {
           "id": "repo-platform",
           "name": "platform-infra",
@@ -99,7 +99,7 @@
         "creationDate": "2026-05-26T08:30:00Z",
         "sourceRefName": "refs/heads/fix/flaky-migration",
         "targetRefName": "refs/heads/main",
-        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-gw/pullRequests/103",
+        "url": "https://dev.azure.com/sample-org/_apis/git/repositories/repo-gw/pullRequests/103",
         "repository": {
           "id": "repo-gw",
           "name": "gateway-service",
@@ -119,7 +119,7 @@
         "creationDate": "2026-05-25T13:00:00Z",
         "sourceRefName": "refs/heads/feature/prod-cac-res-onboarding",
         "targetRefName": "refs/heads/main",
-        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-argocd/pullRequests/102",
+        "url": "https://dev.azure.com/sample-org/_apis/git/repositories/repo-argocd/pullRequests/102",
         "repository": {
           "id": "repo-argocd",
           "name": "argocd",
@@ -137,7 +137,7 @@
         "creationDate": "2026-05-24T10:10:00Z",
         "sourceRefName": "refs/heads/feature/gw-retry",
         "targetRefName": "refs/heads/main",
-        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-gw/pullRequests/101",
+        "url": "https://dev.azure.com/sample-org/_apis/git/repositories/repo-gw/pullRequests/101",
         "repository": {
           "id": "repo-gw",
           "name": "gateway-service",
@@ -157,7 +157,7 @@
         "creationDate": "2026-05-23T17:45:00Z",
         "sourceRefName": "refs/heads/feature/metrics-dashboard",
         "targetRefName": "refs/heads/main",
-        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-gw/pullRequests/106",
+        "url": "https://dev.azure.com/sample-org/_apis/git/repositories/repo-gw/pullRequests/106",
         "repository": {
           "id": "repo-gw",
           "name": "gateway-service",
@@ -182,7 +182,7 @@
         "creationDate": "2026-05-30T09:15:00Z",
         "sourceRefName": "refs/heads/feature/cert-rotation",
         "targetRefName": "refs/heads/main",
-        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-platform/pullRequests/110",
+        "url": "https://dev.azure.com/sample-org/_apis/git/repositories/repo-platform/pullRequests/110",
         "repository": {
           "id": "repo-platform",
           "name": "platform-infra",
@@ -203,7 +203,7 @@
         "creationDate": "2026-05-31T12:00:00Z",
         "sourceRefName": "refs/heads/feature/helm-ingress",
         "targetRefName": "refs/heads/main",
-        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-argocd/pullRequests/201",
+        "url": "https://dev.azure.com/sample-org/_apis/git/repositories/repo-argocd/pullRequests/201",
         "repository": {
           "id": "repo-argocd",
           "name": "argocd",
@@ -224,7 +224,7 @@
         "creationDate": "2026-05-22T19:30:00Z",
         "sourceRefName": "refs/heads/feature/rbac-tighten",
         "targetRefName": "refs/heads/main",
-        "url": "https://dev.azure.com/Au10tix-AD/_apis/git/repositories/repo-platform/pullRequests/202",
+        "url": "https://dev.azure.com/sample-org/_apis/git/repositories/repo-platform/pullRequests/202",
         "repository": {
           "id": "repo-platform",
           "name": "platform-infra",

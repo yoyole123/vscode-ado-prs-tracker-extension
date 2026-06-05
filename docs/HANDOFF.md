@@ -1,4 +1,4 @@
-# Au10tix PR Status - Claude Handoff
+# PR Status - Claude Handoff
 
 A self-contained brief for a fresh Claude session opening this project. Read this file first; everything else flows from here.
 
@@ -8,7 +8,7 @@ A self-contained brief for a fresh Claude session opening this project. Read thi
 
 A personal VSCode extension that shows Yoav's active Azure DevOps PRs as a coloured indicator in the status bar. Click the indicator to reveal a dedicated **sidebar view** (its own activity-bar icon) listing the PRs; click a PR row to open it in the browser; click the inline X to dismiss a PR until something pushes new activity to it. The older QuickPick list is still available via the command palette (`PR Status: Show My PRs (Quick List)`).
 
-- **Org**: `Au10tix-AD` (single-org tool, no multi-org support)
+- **Org**: multi-org (auto-discovery, optional `prStatus.organization` override)
 - **Distribution**: personal `.vsix`, no marketplace
 - **Refresh cadence**: every 5 min + on window focus + on status-bar click + on activation
 - **Auth**: VSCode's built-in Microsoft auth provider with the ADO AAD scope (no `az` CLI dependency)
@@ -104,8 +104,8 @@ Single-responsibility modules. Only `extension.ts` knows about every other modul
    - Hover tooltips in VSCode can't scroll. The tooltip shows colour breakdown only ("3 red, 12 yellow, 5 green") + "click for full list". The full PR list is for the QuickPick.
 
 6. **Auth via `vscode.authentication.getSession('microsoft', ...)` with scope `499b84ac-1321-427f-aa17-267ca6975798/.default`**
-   - Pinned account id (memoised in `auth.ts`) so a user signed into both a personal MSA and Au10tix AAD always gets the right token.
-   - **Risk** (still open): could fail under Au10tix Conditional Access. If sign-in pops then immediately errors, fall back to a PAT-via-setting approach.
+   - Pinned account id (memoised in `auth.ts`) so a user signed into both a personal MSA and work AAD always gets the right token.
+   - **Risk** (still open): could fail under org Conditional Access. If sign-in pops then immediately errors, fall back to a PAT-via-setting approach.
 
 7. **Sidebar category grouping** (see `categorize` in [src/viewModel.ts](../src/viewModel.ts))
    - PRs in the sidebar are grouped into four buckets, top to bottom: **Approved (not merged)**, **User action required**, **Pending approval**, **Other**. Empty groups are hidden; each header shows a count.
@@ -203,7 +203,7 @@ If Yoav iterates further on visual layout, the change surface is small - mostly 
 
 | Risk | Mitigation if it bites |
 |---|---|
-| `vscode.authentication.getSession('microsoft', ...)` may be blocked by Au10tix Conditional Access policies | Fall back to PAT via a `prStatus.pat` VSCode setting; auth.ts currently has no fallback |
+| `vscode.authentication.getSession('microsoft', ...)` may be blocked by Conditional Access policies | Fall back to PAT via a `prStatus.pat` VSCode setting; auth.ts currently has no fallback |
 | Comment-only PR activity doesn't auto-undismiss (only new commits do) | Use `PR Status: Undismiss All PRs` command. If this becomes painful, add per-PR threads fetch and store `latestThreadCommentId` in the `DismissRecord` |
 | Required reviewer detection uses `reviewer.isRequired` only | If repos use a "minimum number of reviewers" policy where no one is `isRequired`, every reviewer reads as optional. Colour rule still works via "any blocking policy not approved -> yellow". Revisit if false-greens appear. |
 | No VSCode settings yet | Hardcoded constants in [src/constants.ts](../src/constants.ts). Easy to lift into `contributes.configuration` when needed. |

@@ -8,7 +8,7 @@ What the extension fetches from Azure DevOps, the exact shapes it reads, and a s
 
 ## The four requests
 
-All requests go to base URL `https://dev.azure.com/Au10tix-AD` with an `Authorization: Bearer <AAD token>` header. They run in this order inside [`fetchMyPrs`](../src/prFetcher.ts):
+All requests go to base URL `https://dev.azure.com/<organization>` with an `Authorization: Bearer <AAD token>` header. They run in this order inside [`fetchMyPrs`](../src/prFetcher.ts):
 
 | # | Purpose | Method + path | Response (read fields) |
 |---|---|---|---|

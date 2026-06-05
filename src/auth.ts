@@ -10,7 +10,7 @@ import { ADO_SCOPE } from './constants.js';
 /**
  * Memoised account id - once we see a successful session, we pin
  * subsequent lookups to the same account so a user signed in to both
- * a personal MSA and the Au10tix AAD doesn't accidentally get the
+ * a personal MSA and a work AAD account doesn't accidentally get the
  * wrong token.
  */
 let pinnedAccountId: string | undefined;
