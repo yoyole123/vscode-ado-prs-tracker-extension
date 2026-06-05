@@ -2,7 +2,7 @@
   "name": "pr-status",
   "displayName": "ADO PR Status",
   "description": "Status-bar indicator and quick list of my active Azure DevOps PRs.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "yoav-keren",
   "repository": {
     "type": "git",
@@ -55,34 +55,108 @@
       }
     },
     "commands": [
-      { "command": "prStatus.open", "title": "PR Status: Show My PRs (Quick List)" },
-      { "command": "prStatus.reveal", "title": "PR Status: Open PR Sidebar" },
-      { "command": "prStatus.refresh", "title": "PR Status: Refresh Now", "icon": "$(refresh)" },
-      { "command": "prStatus.undismiss", "title": "PR Status: Undismiss a PR...", "icon": "$(history)" },
-      { "command": "prStatus.undismissAll", "title": "PR Status: Undismiss All PRs", "icon": "$(clear-all)" },
-      { "command": "prStatus.signIn", "title": "PR Status: Sign In to Azure DevOps" },
-      { "command": "prStatus.logout", "title": "PR Status: Log Out of Azure DevOps" },
-      { "command": "prStatus.openPr", "title": "Open PR in Browser" },
-      { "command": "prStatus.dismissPr", "title": "Dismiss until next push", "icon": "$(close)" },
-      { "command": "prStatus.moveToCategory", "title": "Move to Category..." },
-      { "command": "prStatus.deleteCategory", "title": "Delete Category", "icon": "$(trash)" }
+      {
+        "command": "prStatus.open",
+        "title": "PR Status: Show My PRs (Quick List)"
+      },
+      {
+        "command": "prStatus.reveal",
+        "title": "PR Status: Open PR Sidebar"
+      },
+      {
+        "command": "prStatus.refresh",
+        "title": "PR Status: Refresh Now",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "prStatus.undismiss",
+        "title": "PR Status: Undismiss a PR...",
+        "icon": "$(history)"
+      },
+      {
+        "command": "prStatus.undismissAll",
+        "title": "PR Status: Undismiss All PRs",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "prStatus.signIn",
+        "title": "PR Status: Sign In to Azure DevOps"
+      },
+      {
+        "command": "prStatus.logout",
+        "title": "PR Status: Log Out of Azure DevOps"
+      },
+      {
+        "command": "prStatus.openPr",
+        "title": "Open PR in Browser"
+      },
+      {
+        "command": "prStatus.dismissPr",
+        "title": "Dismiss until next push",
+        "icon": "$(close)"
+      },
+      {
+        "command": "prStatus.moveToCategory",
+        "title": "Move to Category..."
+      },
+      {
+        "command": "prStatus.deleteCategory",
+        "title": "Delete Category",
+        "icon": "$(trash)"
+      }
     ],
     "menus": {
       "commandPalette": [
-        { "command": "prStatus.openPr", "when": "false" },
-        { "command": "prStatus.dismissPr", "when": "false" },
-        { "command": "prStatus.moveToCategory", "when": "false" },
-        { "command": "prStatus.deleteCategory", "when": "false" }
+        {
+          "command": "prStatus.openPr",
+          "when": "false"
+        },
+        {
+          "command": "prStatus.dismissPr",
+          "when": "false"
+        },
+        {
+          "command": "prStatus.moveToCategory",
+          "when": "false"
+        },
+        {
+          "command": "prStatus.deleteCategory",
+          "when": "false"
+        }
       ],
       "view/title": [
-        { "command": "prStatus.refresh", "when": "view == prStatus.prListView", "group": "navigation@1" },
-        { "command": "prStatus.undismiss", "when": "view == prStatus.prListView && prStatus.hasDismissed", "group": "navigation@2" },
-        { "command": "prStatus.undismissAll", "when": "view == prStatus.prListView && prStatus.hasDismissed", "group": "navigation@3" }
+        {
+          "command": "prStatus.refresh",
+          "when": "view == prStatus.prListView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "prStatus.undismiss",
+          "when": "view == prStatus.prListView && prStatus.hasDismissed",
+          "group": "navigation@2"
+        },
+        {
+          "command": "prStatus.undismissAll",
+          "when": "view == prStatus.prListView && prStatus.hasDismissed",
+          "group": "navigation@3"
+        }
       ],
       "view/item/context": [
-        { "command": "prStatus.moveToCategory", "when": "view == prStatus.prListView && viewItem == pr", "group": "1_modification@1" },
-        { "command": "prStatus.dismissPr", "when": "view == prStatus.prListView && viewItem == pr", "group": "inline" },
-        { "command": "prStatus.deleteCategory", "when": "view == prStatus.prListView && viewItem == customCategory", "group": "inline" }
+        {
+          "command": "prStatus.moveToCategory",
+          "when": "view == prStatus.prListView && viewItem == pr",
+          "group": "1_modification@1"
+        },
+        {
+          "command": "prStatus.dismissPr",
+          "when": "view == prStatus.prListView && viewItem == pr",
+          "group": "inline"
+        },
+        {
+          "command": "prStatus.deleteCategory",
+          "when": "view == prStatus.prListView && viewItem == customCategory",
+          "group": "inline"
+        }
       ]
     }
   },
