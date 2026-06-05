@@ -1,46 +1,62 @@
 # PR Status
 
-A personal VS Code extension that shows your active Azure DevOps pull requests
-as a coloured indicator in the status bar and a dedicated sidebar view.
+A lightweight VS Code extension for tracking your active Azure DevOps pull requests in one place.
 
-## Features
+It adds a color-coded status item in the footer and a dedicated PR sidebar so you can quickly see where attention is needed.
 
-- **Status bar indicator** — colour-coded (green / yellow / red) aggregate PR health at a glance
-- **Sidebar view** — PRs grouped by category (Approved · User action required · Pending approval · Other); click a row to open it in the browser
-- **Dismiss** — hide a PR until a new commit is pushed to it
-- **Move to category** — manually override which group a PR belongs to
-- **Quick List** — command-palette fallback (`PR Status: Show My PRs (Quick List)`)
+## Highlights
 
-## Requirements
+- Footer indicator with aggregate health:
+	- Green = ready
+	- Yellow = pending/action needed
+	- Red = conflicts or rejection
+- Sidebar grouped by workflow state:
+	- User action required
+	- Pending approval
+	- Approved (not merged)
+	- Other
+- Open PR in browser from list row click
+- Dismiss PRs until next push (auto-undismiss on new commit)
+- Optional manual category overrides
+- Works across Azure DevOps organizations:
+	- Auto-discovers orgs after sign-in
+	- Prompts once if multiple orgs are available
 
-- VS Code 1.85+
-- An Azure DevOps account (any organisation)
-- Sign in via the Microsoft auth provider when prompted (uses VS Code's built-in auth — no `az` CLI needed)
+## Quick Start
 
-## Installation
-
-Install from the `.vsix` package:
-
-```bash
-code --install-extension pr-status.vsix
-```
-
-Or via the UI: **Extensions → `...` → Install from VSIX…**
+1. Install the extension.
+2. Run Sign In to Azure DevOps from the command palette.
+3. Click the footer PR status item to open the sidebar.
 
 ## Configuration
 
-| Setting | Type | Default | Description |
-|---|---|---|---|
-| `prStatus.organization` | string | `""` | Optional org slug (or URL). Leave empty for auto-discovery after sign in |
-| `prStatus.mockMode` | boolean | `false` | Use static sample data instead of Azure DevOps — useful for testing on machines without ADO access |
+| Setting | Default | Description |
+|---|---|---|
+| `prStatus.organization` | `""` | Optional org slug or URL. Leave empty for auto-discovery. |
+| `prStatus.mockMode` | `false` | Use static sample data for local testing without ADO access. |
 
-## Commands
+## Main Commands
 
-| Command | Description |
-|---|---|
-| `PR Status: Show My PRs (Quick List)` | Open the command-palette PR picker |
-| `PR Status: Open PR Sidebar` | Focus the sidebar view |
-| `PR Status: Refresh Now` | Fetch latest PR data immediately |
-| `PR Status: Sign In to Azure DevOps` | Trigger the AAD consent flow |
-| `PR Status: Undismiss a PR...` | Restore a single dismissed PR |
-| `PR Status: Undismiss All PRs` | Clear all dismissals |
+- PR Status: Show My PRs (Quick List)
+- PR Status: Open PR Sidebar
+- PR Status: Refresh Now
+- PR Status: Sign In to Azure DevOps
+- PR Status: Log Out of Azure DevOps
+- PR Status: Undismiss a PR...
+- PR Status: Undismiss All PRs
+
+## Local Development
+
+```bash
+npm install
+npm run build
+npm test
+```
+
+Press F5 to launch an Extension Development Host.
+
+## Package
+
+```bash
+npm run package
+```
