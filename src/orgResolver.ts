@@ -11,6 +11,8 @@
 import * as vscode from 'vscode';
 import { ADO_BASE_HOST, ADO_PROFILE_HOST, ORG_STATE_KEY } from './constants.js';
 
+const MOCK_ORGS = ['example-org', 'contoso-dev', 'fabrikam-platform'];
+
 interface ProfileResponse {
   id: string;
 }
@@ -25,6 +27,33 @@ export function orgBaseUrl(org: string): string {
 
 export async function clearRememberedOrg(state: vscode.Memento): Promise<void> {
   await state.update(ORG_STATE_KEY, undefined);
+}
+
+export async function resolveMockAdoBaseUrl(state: vscode.Memento): Promise<string> {
+  const configured = normalizeOrgName(
+    vscode.workspace
+      .getConfiguration('prStatus')
+      .get<string>('organization', ''),
+  );
+  if (configured) return orgBaseUrl(configured);
+
+  const cached = normalizeOrgName(state.get<string>(ORG_STATE_KEY, ''));
+  if (cached) return orgBaseUrl(cached);
+
+  const picked = await vscode.window.showQuickPick(
+    MOCK_ORGS.map(org => ({
+      label: org,
+      description: `${orgBaseUrl(org)} (mock)`,
+    })),
+    {
+      title: 'Choose Azure DevOps organization (mock)',
+      placeHolder: 'Mock mode simulates multi-org membership',
+    },
+  );
+  if (!picked) throw new Error('Organization selection was cancelled.');
+
+  await state.update(ORG_STATE_KEY, picked.label);
+  return orgBaseUrl(picked.label);
 }
 
 export async function resolveAdoBaseUrl(

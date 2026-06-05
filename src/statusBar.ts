@@ -8,6 +8,7 @@ import * as vscode from 'vscode';
 import {
   COMMAND_REFRESH,
   COMMAND_REVEAL,
+  COMMAND_LOGOUT,
   COMMAND_SIGN_IN,
   COMMAND_UNDISMISS_ALL,
   STATUS_BAR_PRIORITY,
@@ -155,7 +156,9 @@ function buildTooltip(state: StatusBarState, color: PrColor): vscode.MarkdownStr
       `\n_${state.dismissedCount} dismissed - [undismiss all](command:${COMMAND_UNDISMISS_ALL})_\n`,
     );
   }
-  md.appendMarkdown(`\n_[Refresh now](command:${COMMAND_REFRESH})_`);
+  md.appendMarkdown(
+    `\n_[Refresh now](command:${COMMAND_REFRESH})_ | _[Log out](command:${COMMAND_LOGOUT})_`,
+  );
 
   return md;
 }

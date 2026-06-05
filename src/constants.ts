@@ -63,6 +63,8 @@ export const COMMAND_UNDISMISS_ALL = 'prStatus.undismissAll';
 /** Undismiss a single PR chosen from a picker. */
 export const COMMAND_UNDISMISS = 'prStatus.undismiss';
 export const COMMAND_SIGN_IN = 'prStatus.signIn';
+/** Clear extension auth/org session hints and return to signed-out state. */
+export const COMMAND_LOGOUT = 'prStatus.logout';
 
 /**
  * Context key set true when there is at least one dismissed PR. Gates the

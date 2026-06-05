@@ -13,11 +13,17 @@ import sampleData from '../docs/ado-sample-data.json';
 type PolicyEntry = { value: RawPolicyEvaluation[] };
 type PolicyMap = Record<string, PolicyEntry | string>;
 
-export async function fetchMockPrs(): Promise<PrFetchResult> {
+export async function fetchMockPrs(baseUrl: string): Promise<PrFetchResult> {
   const userId = sampleData.connectionData.authenticatedUser.id;
 
-  const created = sampleData.pullRequestsByCreator.value as unknown as RawPullRequest[];
-  const reviewing = sampleData.pullRequestsByReviewer.value as unknown as RawPullRequest[];
+  const created = rewriteOrgInPrUrls(
+    sampleData.pullRequestsByCreator.value as unknown as RawPullRequest[],
+    baseUrl,
+  );
+  const reviewing = rewriteOrgInPrUrls(
+    sampleData.pullRequestsByReviewer.value as unknown as RawPullRequest[],
+    baseUrl,
+  );
 
   const { prs, roleByPr } = mergePrLists(created, reviewing);
 
@@ -31,4 +37,28 @@ export async function fetchMockPrs(): Promise<PrFetchResult> {
   }
 
   return { userId, prs, policies, roleByPr };
+}
+
+function rewriteOrgInPrUrls(prs: RawPullRequest[], baseUrl: string): RawPullRequest[] {
+  return prs.map(pr => ({
+    ...pr,
+    url: rewriteUrlBase(pr.url, baseUrl),
+  }));
+}
+
+function rewriteUrlBase(rawUrl: string, baseUrl: string): string {
+  try {
+    const parsedUrl = new URL(rawUrl);
+    const parsedBase = new URL(baseUrl);
+    const parts = parsedUrl.pathname.split('/').filter(Boolean);
+    if (parts.length === 0) return rawUrl;
+
+    parts[0] = parsedBase.pathname.split('/').filter(Boolean)[0] ?? parts[0];
+    parsedUrl.protocol = parsedBase.protocol;
+    parsedUrl.host = parsedBase.host;
+    parsedUrl.pathname = `/${parts.join('/')}`;
+    return parsedUrl.toString();
+  } catch {
+    return rawUrl;
+  }
 }

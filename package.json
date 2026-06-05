@@ -57,6 +57,7 @@
       { "command": "prStatus.undismiss", "title": "PR Status: Undismiss a PR...", "icon": "$(history)" },
       { "command": "prStatus.undismissAll", "title": "PR Status: Undismiss All PRs", "icon": "$(clear-all)" },
       { "command": "prStatus.signIn", "title": "PR Status: Sign In to Azure DevOps" },
+      { "command": "prStatus.logout", "title": "PR Status: Log Out of Azure DevOps" },
       { "command": "prStatus.openPr", "title": "Open PR in Browser" },
       { "command": "prStatus.dismissPr", "title": "Dismiss until next push", "icon": "$(close)" },
       { "command": "prStatus.moveToCategory", "title": "Move to Category..." },

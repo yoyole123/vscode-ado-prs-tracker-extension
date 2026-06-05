@@ -13,6 +13,7 @@ import { AdoAuthError } from './adoClient.js';
 import {
   COMMAND_DELETE_CATEGORY,
   COMMAND_DISMISS_PR,
+  COMMAND_LOGOUT,
   COMMAND_MOVE_CATEGORY,
   COMMAND_OPEN,
   COMMAND_OPEN_PR,
@@ -43,7 +44,11 @@ import {
 } from './dismissStore.js';
 import { fetchMyPrs } from './prFetcher.js';
 import { fetchMockPrs } from './mockFetcher.js';
-import { clearRememberedOrg, resolveAdoBaseUrl } from './orgResolver.js';
+import {
+  clearRememberedOrg,
+  resolveAdoBaseUrl,
+  resolveMockAdoBaseUrl,
+} from './orgResolver.js';
 import { showPrPicker } from './quickPick.js';
 import { pickDismissedPr } from './undismissPicker.js';
 import { CategoryTreeItem, PrTreeDataProvider, PrTreeItem } from './prTreeView.js';
@@ -82,7 +87,10 @@ async function refresh(): Promise<void> {
         process.env['PR_STATUS_MOCK'] === '1' ||
         vscode.workspace.getConfiguration('prStatus').get<boolean>('mockMode', false);
       const fetchResult = isMockMode
-        ? await fetchMockPrs()
+        ? await (async () => {
+            const baseUrl = await resolveMockAdoBaseUrl(context!.globalState);
+            return fetchMockPrs(baseUrl);
+          })()
         : await (async () => {
             const token = await getAdoToken();
             if (!token) {
@@ -285,6 +293,17 @@ async function signIn(): Promise<void> {
   if (token) await refresh();
 }
 
+/** Log out from the extension's cached ADO session hints and org selection. */
+async function logout(): Promise<void> {
+  if (!context || !statusBar) return;
+
+  clearPinnedAccount();
+  await clearRememberedOrg(context.globalState);
+  lastGood = null;
+  renderTree();
+  statusBar.setSignedOut();
+}
+
 /**
  * Undismiss command - refreshes, lets the user pick a dismissed PR from a
  * QuickPick, restores just that one, and refreshes again.
@@ -332,6 +351,7 @@ export function activate(ctx: vscode.ExtensionContext): void {
     vscode.commands.registerCommand(COMMAND_UNDISMISS, undismissCommand),
     vscode.commands.registerCommand(COMMAND_UNDISMISS_ALL, undismissAllCommand),
     vscode.commands.registerCommand(COMMAND_SIGN_IN, signIn),
+    vscode.commands.registerCommand(COMMAND_LOGOUT, logout),
   );
 
   // Refresh when the window regains focus - catches the common case
