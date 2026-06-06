@@ -1,9 +1,10 @@
 {
   "name": "ado-pr-status",
-  "displayName": "ADO PR Status",
+  "displayName": "ADO PR Status Tracker",
   "description": "Status-bar indicator and quick list of my active Azure DevOps PRs.",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "publisher": "yoav-keren",
+  "icon": "logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/yoyole123/vscode-ado-prs-tracker-extension.git"
